@@ -55,18 +55,19 @@ class InfoController extends GetxController {
 
     loading.value = true;
     try {
+      appService.user.update((val) {
+        val?.name = user.value.name;
+        val?.phone = user.value.phone;
+        val?.address = user.value.address;
+      });
+
+      appService.user.refresh();
+
       Get.back();
 
       final _user = await UserService.updateUser(user.value.idsv,
           user.value.cccd, user.value.phone, user.value.address);
 
-      appService.user.update((val) {
-        val?.name = _user.name;
-        val?.phone = _user.phone;
-        val?.address = _user.address;
-      });
-
-      appService.user.refresh();
 
       Get.snackbar('Thành công', 'Đã thay dổi thông tin của bạn',
           backgroundColor: Colors.green, colorText: Colors.white);

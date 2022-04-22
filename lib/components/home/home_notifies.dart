@@ -50,7 +50,7 @@ class _Notifies extends StatelessWidget {
       separatorBuilder: (context, index) {
         return const Divider();
       },
-      itemCount: c.list.length,
+      itemCount: c.list.length <= 5 ? c.list.length : 5,
       itemBuilder: (ctx, index) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: GestureDetector(
